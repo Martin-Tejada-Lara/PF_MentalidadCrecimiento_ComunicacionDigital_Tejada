@@ -9,3 +9,12 @@ Para lograrlo, decidí utilizar un stack de herramientas nativas de Excel:
 3) Segmentaciones de datos: Para ofrecer filtros interactivos y fáciles de usar.
 4) Validaciones de datos: Para garantizar la integridad de la información ingresada.
   El requisito fundamental del proyecto era que el dashboard debía actualizarse automáticamente cada vez que se incorporaran nuevos registros a la base de datos, sin necesidad de intervención manual por parte del usuario final.
+
+Problema
+Al comenzar a ensamblar el dashboard, me topé con un inconveniente importante que amenazaba con descarrilar el proyecto. Los gráficos dinámicos no reflejaban correctamente los cambios realizados en la base de datos.
+Cada vez que agregaba nuevos registros para probar la funcionalidad, me encontraba con que:
+Algunos gráficos se quedaban con el rango de datos anterior.
+Las tablas dinámicas no incluían las nuevas filas.
+Debía actualizar manualmente el origen de datos de cada elemento, un proceso tedioso y propenso a errores.
+Lo más crítico: Las segmentaciones no controlaban todos los gráficos. Esto provocaba que, al seleccionar un filtro (ej. "Región Norte"), algunos indicadores mostraran datos correctos mientras que otros seguían mostrando información sin filtrar, generando inconsistencias y una gran confusión.
+En esencia, el dashboard, que debía ser una fuente de verdad única, se estaba convirtiendo en una fuente de desinformación.
