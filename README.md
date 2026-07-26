@@ -45,3 +45,11 @@ Modifiqué categorías existentes.
 Cambié fechas y eliminé registros de prueba.
 En todos los casos, después de un simple clic derecho en cualquier tabla dinámica y seleccionar "Actualizar", el dashboard completo respondía correctamente y de manera uniforme.
 Documenté cada uno de estos pasos en el repositorio del proyecto para que cualquier miembro del equipo pudiera comprender y replicar el flujo de trabajo en el futuro.
+    Aprendizajes y Mejoras Implementadas
+  Esta experiencia dejó varias lecciones clave que ahora son parte de mi "caja de herramientas" profesional:
+La base es lo primero: Un dashboard solo es tan bueno como la estructura de sus datos subyacentes. Trabajar con Tablas de Excel (Ctrl+T) desde el principio no solo es una buena práctica, sino una necesidad para la escalabilidad y la automatización.
+La uniformidad previene el caos: Estandarizar el origen de todos los elementos analíticos (tablas y gráficos) es crucial para mantener la consistencia y evitar errores difíciles de rastrear.
+  El poder de las "Conexiones de informe": Este es un punto de control fundamental para garantizar que los filtros interactúen correctamente con todo el dashboard, y es fácil de pasar por alto. Ahora es un paso obligatorio en mi flujo de trabajo.
+Un post-mortem no es solo para errores en producción: Aplicar un enfoque de "causa raíz" durante la fase de desarrollo, como hice aquí, me ahorró innumerables horas de frustración futura y resultó en un entregable de mayor calidad.
+Documentar es invertir en el futuro: Aunque el proceso fue individual, documentarlo en el repositorio permite que el conocimiento sea compartido y el proyecto, mantenible.
+
