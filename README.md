@@ -18,3 +18,30 @@ Las tablas dinámicas no incluían las nuevas filas.
 Debía actualizar manualmente el origen de datos de cada elemento, un proceso tedioso y propenso a errores.
 Lo más crítico: Las segmentaciones no controlaban todos los gráficos. Esto provocaba que, al seleccionar un filtro (ej. "Región Norte"), algunos indicadores mostraran datos correctos mientras que otros seguían mostrando información sin filtrar, generando inconsistencias y una gran confusión.
 En esencia, el dashboard, que debía ser una fuente de verdad única, se estaba convirtiendo en una fuente de desinformación.
+
+    Acciones Tomadas (Un Enfoque de Post-Mortem Constructivo)
+En lugar de aplicar soluciones rápidas y parches, decidí abordar el problema con un enfoque sistemático, similar a un post-mortem constructivo, pero aplicado a una fase de desarrollo. No se trataba de buscar un culpable, sino de entender la causa raíz para construir una solución duradera.
+  Paso 1: Identificación de la Causa Raíz (El "Post-Mortem")
+Mi primer paso fue analizar a fondo la estructura de mi archivo. Revisé cómo estaban construidas las tablas dinámicas y descubrí el problema fundamental:
+Algunas tablas dinámicas utilizaban rangos fijos (ej. =Hoja1!$A$1:$G$1000).
+Otras, las más recientes, trabajaban sobre tablas estructuradas (ej. =TablaVentas).
+La causa raíz era clara: la falta de uniformidad. Los rangos fijos no se expandían automáticamente, lo que provocaba que los gráficos y análisis basados en ellos quedaran obsoletos al agregar nuevos datos.
+  Paso 2: Reestructuración de la Base de Datos (La Solución)
+Con la causa identificada, procedí a estandarizar toda la base de datos:
+Convertir todo en una Tabla de Excel: Seleccioné todo el rango de datos (incluyendo encabezados) y presioné Ctrl + T. Esto convirtió el rango estático en una "Tabla" dinámica. La clave de este paso es que, al añadir nuevas filas al final, la tabla se expande automáticamente, y este nuevo rango es reconocido por Excel.
+  Paso 3: Actualización del Modelo de Datos
+Con la tabla estructurada como base, el siguiente paso fue reconstruir el modelo analítico sobre una base sólida:
+Reemplacé las tablas dinámicas antiguas: Eliminé todas las tablas dinámicas que usaban rangos fijos y las recreé desde cero, pero esta vez seleccionando como origen el nombre de la nueva Tabla de Excel (ej. TablaVentas).
+Reconecté los gráficos dinámicos: Una vez que las nuevas tablas dinámicas estuvieron listas, volví a vincular cada gráfico a su tabla dinámica correspondiente.
+  Paso 4: Unificación con Segmentaciones
+El paso más crítico para la consistencia del dashboard fue la correcta configuración de las segmentaciones de datos.
+Cada segmentación (por ejemplo, de fecha, región o producto) debía controlar todas las tablas dinámicas relevantes.
+Para lograrlo, hice clic derecho sobre cada segmentación, seleccioné "Conexiones de informe..." y, en el cuadro de diálogo, marqué todas las tablas dinámicas que debían ser afectadas por ese filtro.
+Esto garantizó que, al seleccionar "Región Sur", cada gráfico y cada tabla en el dashboard se actualizaran al unísono, mostrando la misma información filtrada.
+  Paso 5: Validación y Documentación
+Finalmente, realicé pruebas exhaustivas para asegurar la robustez de la solución:
+Agregué nuevas filas de ventas.
+Modifiqué categorías existentes.
+Cambié fechas y eliminé registros de prueba.
+En todos los casos, después de un simple clic derecho en cualquier tabla dinámica y seleccionar "Actualizar", el dashboard completo respondía correctamente y de manera uniforme.
+Documenté cada uno de estos pasos en el repositorio del proyecto para que cualquier miembro del equipo pudiera comprender y replicar el flujo de trabajo en el futuro.
